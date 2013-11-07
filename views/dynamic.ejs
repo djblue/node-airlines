@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- -->
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/<%= style %>.css">
+    <% if (!production) { %>
+    <script src="//localhost:35729/livereload.js"></script>
+    <% } %>
+    <% if (typeof socket !== 'undefined' && !!socket) { %>
+    <script src="/socket.io/socket.io.js"></script>
+    <% } %>
+</head>
+<body>
+    <div id="body"></div>
+    <% if (production) { %>
+    <script src="javascripts/<%= main %>.js"></script>
+    <% } else { %>
+    <script data-main="javascripts/<%= main %>.js"
+    src="javascripts/components/requirejs/require.js"></script>
+    <% } %>
+</body>
+</html>
