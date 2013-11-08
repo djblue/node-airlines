@@ -7,9 +7,7 @@ module.exports = function(grunt) {
             files: [
                 'app.js',
                 'Gruntfile.js',
-                'public/javascripts/*.js', 
-                'public/javascripts/**/*.js',
-                'routes/*.js'
+                'api/*.js'
             ],
             options: {
                 laxcomma: true,
@@ -23,7 +21,7 @@ module.exports = function(grunt) {
             },
             dev: {
                 options: {
-                    script: 'app.js'
+                    script: 'server.js'
                 }
             },
             prod: {
@@ -37,11 +35,15 @@ module.exports = function(grunt) {
         },
         watch: {
             express: {
-                files: ['routes/*.js'],
+                files: ['app.js', 'api/*.js'],
                 tasks: ['express:dev'],
                 options: {
                     nospawn: true
                 }
+            },
+            jasmine: {
+                files: ['app.js', 'api/**/*.js'],
+                tasks: ['jshint', 'jasmine_node'],
             },
             reload: {
                 files: [
@@ -118,10 +120,13 @@ module.exports = function(grunt) {
             }
         },
         jasmine_node: {
-            projectRoot: "./routes/specs",
+            projectRoot: "./api/specs",
             specNameMatcher: "*",
             forceExit: true,
-            verbose: false
+            verbose: false,
+            config: {
+                evn: 'production'
+            }
         },
         copy: {
             build: {
@@ -169,7 +174,6 @@ module.exports = function(grunt) {
 
     // register all of the grunt tasks
     grunt.registerTask('default', ['shell:mongo','express:prod']);
-    grunt.registerTask('server', ['express:dev', 'open:index','watch']);
-    grunt.registerTask('test', [
-        'jasmine_node', 'connect:test', 'jasmine:browser', 'jshint']);
+    grunt.registerTask('server', ['express:dev', 'open:index','watch:express']);
+    grunt.registerTask('test', [ 'jshint', 'jasmine_node', 'watch:jasmine']);
 };
