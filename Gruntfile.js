@@ -48,7 +48,6 @@ module.exports = function(grunt) {
             reload: {
                 files: [
                     'public/stylesheets/*.css',
-                    'public/javascripts/*.js',
                     'public/javascripts/**/*.js',
                     'public/javascripts/**/*.ejs',
                     'public/*.html'
@@ -174,6 +173,6 @@ module.exports = function(grunt) {
 
     // register all of the grunt tasks
     grunt.registerTask('default', ['shell:mongo','express:prod']);
-    grunt.registerTask('server', ['express:dev', 'open:index','watch:express']);
+    grunt.registerTask('server', ['express:dev', 'open:index','watch:reload']);
     grunt.registerTask('test', [ 'jshint', 'jasmine_node', 'watch:jasmine']);
 };

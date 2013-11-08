@@ -6,3 +6,5 @@ require(['/javascripts/config.js'], function () {
         console.log("It works.");
     });
 });
+
+
