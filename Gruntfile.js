@@ -44,6 +44,9 @@ module.exports = function(grunt) {
             jasmine: {
                 files: ['app.js', 'api/**/*.js'],
                 tasks: ['jshint', 'jasmine_node'],
+                options: {
+                    spawn: true // don't crash grunt
+                }
             },
             reload: {
                 files: [
@@ -124,7 +127,7 @@ module.exports = function(grunt) {
             forceExit: true,
             verbose: false,
             config: {
-                evn: 'production'
+                env: 'production'
             }
         },
         copy: {
@@ -173,6 +176,6 @@ module.exports = function(grunt) {
 
     // register all of the grunt tasks
     grunt.registerTask('default', ['shell:mongo','express:prod']);
-    grunt.registerTask('server', ['express:dev', 'open:index','watch:reload']);
-    grunt.registerTask('test', [ 'jshint', 'jasmine_node', 'watch:jasmine']);
+    grunt.registerTask('server', ['express:dev', 'open:index','watch:express', 'watch:reload']);
+    grunt.registerTask('test', ['watch:jasmine']);
 };
