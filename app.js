@@ -8,7 +8,11 @@ var util        = require('util')
 
     // load api
   , locations   = require('./api/locations')
-  , flights     = require('./api/flights');
+  , flights     = require('./api/flights')
+
+  , passport    = require('passport')
+  , auth        = require('./api/auth')
+  , users       = require('./api/users');
 
 
 // all environments
@@ -22,6 +26,8 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 app.use(express.session({secret: '97e0089deda4f396f7e3a85c8aa62e37'}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,8 +47,10 @@ app.get('/path', function (req, res) {
     });
 });
 
+auth.setup(app);
 flights.setup(app);
 locations.setup(app);
+users.setup(app);
 
 //mongooseApi.serveModels(app);
 var db = mongoose.connection; 

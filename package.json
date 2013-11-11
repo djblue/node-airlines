@@ -8,7 +8,9 @@
     "underscore": "latest",
     "ejs": "~0.8.4",
     "mongoose-api": "0.0.2",
-    "mongoose": "~3.8.0"
+    "mongoose": "~3.8.0",
+    "passport-local": "~0.1.6",
+    "passport": "~0.1.17"
   },
   "devDependencies": {
     "grunt": "latest",
