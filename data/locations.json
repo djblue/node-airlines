@@ -1,0 +1,252 @@
+[
+    {
+        "_id": 1,
+        "city": "Montgomery",
+        "state": "Alabama"
+    },
+    {
+        "_id": 2,
+        "city": "Juneau",
+        "state": "Alaska"
+    },
+    {
+        "_id": 3,
+        "city": "Phoenix",
+        "state": "Arizona"
+    },
+    {
+        "_id": 4,
+        "city": "LittleRock",
+        "state": "Arkansas"
+    },
+    {
+        "_id": 5,
+        "city": "Sacramento",
+        "state": "California"
+    },
+    {
+        "_id": 6,
+        "city": "Denver",
+        "state": "Colorado"
+    },
+    {
+        "_id": 7,
+        "city": "Hartford",
+        "state": "Connecticut"
+    },
+    {
+        "_id": 8,
+        "city": "Dover",
+        "state": "Delaware"
+    },
+    {
+        "_id": 9,
+        "city": "Tallahassee",
+        "state": "Florida"
+    },
+    {
+        "_id": 10,
+        "city": "Atlanta",
+        "state": "Georgia"
+    },
+    {
+        "_id": 11,
+        "city": "Honolulu",
+        "state": "Hawaii"
+    },
+    {
+        "_id": 12,
+        "city": "Boise",
+        "state": "Idaho"
+    },
+    {
+        "_id": 13,
+        "city": "Springfield",
+        "state": "Illinois"
+    },
+    {
+        "_id": 14,
+        "city": "Indianapolis",
+        "state": "Indiana"
+    },
+    {
+        "_id": 15,
+        "city": "DesMoines",
+        "state": "Iowa"
+    },
+    {
+        "_id": 16,
+        "city": "Topeka",
+        "state": "Kansas"
+    },
+    {
+        "_id": 17,
+        "city": "Frankfort",
+        "state": "Kentucky"
+    },
+    {
+        "_id": 18,
+        "city": "BatonRouge",
+        "state": "Louisiana"
+    },
+    {
+        "_id": 19,
+        "city": "Augusta",
+        "state": "Maine"
+    },
+    {
+        "_id": 20,
+        "city": "Annapolis",
+        "state": "Maryland"
+    },
+    {
+        "_id": 21,
+        "city": "Boston",
+        "state": "Massachusetts"
+    },
+    {
+        "_id": 22,
+        "city": "Lansing",
+        "state": "Michigan"
+    },
+    {
+        "_id": 23,
+        "city": "St.Paul",
+        "state": "Minnesota"
+    },
+    {
+        "_id": 24,
+        "city": "Jackson",
+        "state": "Mississippi"
+    },
+    {
+        "_id": 25,
+        "city": "JeffersonCity",
+        "state": "Missouri"
+    },
+    {
+        "_id": 26,
+        "city": "Helena",
+        "state": "Montana"
+    },
+    {
+        "_id": 27,
+        "city": "Lincoln",
+        "state": "Nebraska"
+    },
+    {
+        "_id": 28,
+        "city": "CarsonCity",
+        "state": "Nevada"
+    },
+    {
+        "_id": 29,
+        "city": "Concord",
+        "state": "NewHampshire"
+    },
+    {
+        "_id": 30,
+        "city": "Trenton",
+        "state": "NewJersey"
+    },
+    {
+        "_id": 31,
+        "city": "SantaFe",
+        "state": "NewMexico"
+    },
+    {
+        "_id": 32,
+        "city": "Albany",
+        "state": "NewYork"
+    },
+    {
+        "_id": 33,
+        "city": "Raleigh",
+        "state": "NorthCarolina"
+    },
+    {
+        "_id": 34,
+        "city": "Bismarck",
+        "state": "NorthDakota"
+    },
+    {
+        "_id": 35,
+        "city": "Columbus",
+        "state": "Ohio"
+    },
+    {
+        "_id": 36,
+        "city": "OklahomaCity",
+        "state": "Oklahoma"
+    },
+    {
+        "_id": 37,
+        "city": "Salem",
+        "state": "Oregon"
+    },
+    {
+        "_id": 38,
+        "city": "Harrisburg",
+        "state": "Pennsylvania"
+    },
+    {
+        "_id": 39,
+        "city": "Providence",
+        "state": "RhodeIsland"
+    },
+    {
+        "_id": 40,
+        "city": "Columbia",
+        "state": "SouthCarolina"
+    },
+    {
+        "_id": 41,
+        "city": "Pierre",
+        "state": "SouthDakota"
+    },
+    {
+        "_id": 42,
+        "city": "Nashville",
+        "state": "Tennessee"
+    },
+    {
+        "_id": 43,
+        "city": "Austin",
+        "state": "Texas"
+    },
+    {
+        "_id": 44,
+        "city": "SaltLakeCity",
+        "state": "Utah"
+    },
+    {
+        "_id": 45,
+        "city": "Montpelier",
+        "state": "Vermont"
+    },
+    {
+        "_id": 46,
+        "city": "Richmond",
+        "state": "Virginia"
+    },
+    {
+        "_id": 47,
+        "city": "Olympia",
+        "state": "Washington"
+    },
+    {
+        "_id": 48,
+        "city": "Charleston",
+        "state": "WestVirginia"
+    },
+    {
+        "_id": 49,
+        "city": "Madison",
+        "state": "Wisconsin"
+    },
+    {
+        "_id": 50,
+        "city": "Cheyenne",
+        "state": "Wyoming"
+    }
+]
