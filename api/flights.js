@@ -17,6 +17,42 @@ var Flight = mongoose.model('Flight', {
     price: Number
 });
 
+// Create some fake data for the database.
+var init = function (app) {
+
+    if ('development' != app.get('env')) return;
+
+    for (var i = 0; i < 10000; i++) {
+
+        var rand1 = Math.floor(Math.random()*100);
+        var rand2 = Math.floor(Math.random()*100);
+
+        var offset = i % 14;
+
+        var now = new Date();
+        now.setDate(now.getDate() + offset);
+        var next = new Date(now);
+        next.setHours(now.getHours() + (rand1 % 6) + 1);
+
+        var f = new Flight({
+            departure: {
+                date: now,
+                location:  (rand1 % 50) + 1
+            },
+            destination: {
+                date: next,
+                location:  (rand2 % 50) + 1
+            },
+            price: (rand1 + rand2) % 1000,
+            available: (rand2 % 250) + 1,
+            total: 250
+        });
+
+        f.save();
+    }
+
+};
+
 var search = function (req, res) {
     
     // There must be some constrains for searching flights.
@@ -48,7 +84,7 @@ var search = function (req, res) {
             type: 'internal'
         });
 
-    // handle the request assigning default to an unspecified query
+    // Handle the request assigning default to an unspecified query
     // parameters.
     } else {
         
@@ -56,61 +92,40 @@ var search = function (req, res) {
         query['departure.location'] = req.query.dep;
         query['destination.location'] = req.query.des;
 
-    // TODO: date parsing
-
-/*
         // Try to find a departure date parameter.
         if (!!req.query.date) {
 
-            // Assume it is a range if it is an array.
-            if (typeof req.query.date == Array) {
-
-                if (!!req.query.date[0].match(/\d{5}-\d{2}-\d{2}/)) {
-                    query['departure.date.0'] = new Date(req.query.date[0]);
-                } else {
-                    res.send(500, {
-                        status: 500,
-                        message: 'Date 1 query parameter not \'YYYY-MM-DD\'',
-                        type: 'internal'
-                    });
-                }
-
-                if (!!req.query.date[1].match(/\d{5}-\d{2}-\d{2}/)) {
-                    query['departure.date.1'] = new Date(req.query.date[1]);
-                } else {
-                    res.send(500, {
-                        status: 500,
-                        message: 'Date 1 query parameter not \'YYYY-MM-DD\'',
-                        type: 'internal'
-                    });
-                }
-
-            // Search for a single date.
+            // Validate date format [YYYY-MM-DD].
+            if (!req.query.date.match(/\d{5}-\d{2}-\d{2}/)) {
+                query['departure.date'] = {
+                    '$gte': new Date(req.query.date)
+                };
             } else {
-                query['departure.date.0'] = req.query.date;
-                query['departure.date.1'] = req.query.date;
+                res.send(500, {
+                    status: 500,
+                    message: '\'date\' query parameter not \'YYYY-MM-DD\'',
+                    type: 'internal'
+                });
             }
+        } else { query['departure.date'] = { '$gte': new Date() }; }
 
-
-        // Default search range [Todays date - Two weeks from Today].
-        } else {
-            var date = new Date();   // Todays date.
-            query['departure.date.0'] = date;
-            date.setDate(date.getDate() + 14); // Two weeks.
-            query['departure.date.1'] = date;
-        }
-
-        // Default cost range.
+        // Default cost range. [0 - cost]
         if (!!req.query.cost) {
-            if (typeof req.query.cost == Array) {
-                query['cost.0'] = req.query.cost[0];
-                query['cost.1'] = req.query.cost[1];
+            if (req.query.cost >= 0 || req.query.cos < 0) {
+                query['price'] = {
+                    '$lte': Number(req.query.cost)
+                }
+            } else {
+                res.send(500, {
+                    status: 500,
+                    message: '\'cost\' query parameter not a number',
+                    type: 'internal'
+                });
             }
         }
-*/
 
         Flight.find(query)
-            .populate('departure.location').limit(20)
+            .populate('departure.location destination.location').limit(20)
             .exec(function (err, docs) {
                 if (err) 
                     res.end(500);
@@ -120,9 +135,15 @@ var search = function (req, res) {
     }
 };
 
-// require express app and setup the appropriate routes.
+// Require express app and setup the appropriate routes.
 exports.setup = function (app) {
     
     app.get('/api/flights', search);
 
+    // Populate database with fake flights if its empty
+    Flight.find({}, function (err, docs){
+        if (docs.length === 0)
+            init(app);
+    })
+    
 };
