@@ -7,7 +7,8 @@ var util        = require('util')
   , mongooseApi = require('mongoose-api')
 
     // load api
-  , tickets     = require('./api/tickets');
+  , locations   = require('./api/locations')
+  , flights     = require('./api/flights');
 
 
 // all environments
@@ -40,7 +41,10 @@ app.get('/path', function (req, res) {
     });
 });
 
-mongooseApi.serveModels(app);
+flights.setup(app);
+locations.setup(app);
+
+//mongooseApi.serveModels(app);
 var db = mongoose.connection; 
 
 db.on('error', console.error.bind(console, 'db connection error:'));
