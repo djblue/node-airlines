@@ -1,4 +1,15 @@
-var app = angular.module('app', []);
+var app = angular.module('app', ['$strap.directives']);
+
+function citySearch($scope) {
+    $scope.typeahead = $.map(Locations, function (Location) {
+        return Location.city;
+    });
+    $scope.typeaheadFn = function(query) {
+      return $.map($scope.typeahead, function(country) {
+          return country + '_1';
+      });
+    }
+}
 
 function Cntrl($scope){
 	//get locations scope

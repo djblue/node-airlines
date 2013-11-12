@@ -2,6 +2,7 @@
 <html lang="en" ng-app="app">
 <head>
     <title>Node Airlines</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"0>
     <!-- livereload for testing -->
@@ -10,10 +11,14 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/0.7.4/angular-strap.min.js"></script>
+    <script
+    src="http://mgcrea.github.io/angular-strap/vendor/bootstrap-datepicker.js"></script>
     <!--fake data-->
     <script src="/javascripts/fData.js"></script>
     <script src="/javascripts/search_script.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+    href="http://mgcrea.github.io/angular-strap/vendor/bootstrap-datepicker.css">
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css">
     <script>
         $(function() {
@@ -26,6 +31,23 @@
           });
         }); 
     </script>
+    <style>
+        @media (min-width: 980px) {
+            .body {
+                padding-top: 160px;
+            }
+         }
+         .jumbotron {
+            position: absolute;
+            top: 40; 
+            left: 0;
+            right: 0;
+            z-index: -1;
+            background-image:
+            url('http://www.freefever.com/stock/airplane-wallpaper-free-downloads.jpg');
+            background-size: 100%;
+         }
+    </style>
 </head>
 <body>
 
@@ -77,6 +99,34 @@
   </div>
 </div>
 
+<div class="body container">
+  <div class="hero-unit">
+    <div class="row-fluid">
+
+      <div class="span3" ng-controller="citySearch">
+        <input class="span12" type="text" placeholder="select departure"
+          ng-model="typeaheadValue" bs-typeahead="typeahead">
+      </div>
+
+      <div class="span3" ng-controller="citySearch">
+        <input class="span12" type="text" placeholder="select destination"
+          ng-model="typeaheadValue" bs-typeahead="typeahead">
+      </div>
+
+      <div class="span3" ng-controller="citySearch">
+        <input type="text" ng-model="datepicker.date" class="span12"
+          placeholder="select date"  
+            data-date-format="dd/mm/yyyy" bs-datepicker>
+      </div>
+
+      <div class="span3">
+        <input class="span12" placeholder="select price"
+          id="appendedPrependedInput" type="text">
+      </div>
+
+    </div>
+  </div>
+</div>
         <!--Search by from, to and date-->
         <div ng-controller="Cntrl">
             From :
@@ -112,5 +162,6 @@
                 <td>{{flight.available}}/{{flight.total}}</td>
             </table>
         </div>
+</div>
     </body>
 </html>
