@@ -35,6 +35,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
     // connect to database
+}
+
+if (!!process.env.MONGOLAB_URI) {
+    mongoose.connect(process.env.MONGOLAB_URI);
+} else {
     mongoose.connect('mongodb://localhost/test');
 }
 
