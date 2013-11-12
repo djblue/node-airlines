@@ -24,9 +24,8 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    User.findById(id)
-        .populate('flights').exec(function(err, user) {
-            done(err, user);
+    User.findById(id).exec(function(err, user) {
+        done(err, user);
     });
 });
 
@@ -41,14 +40,14 @@ exports.isAuthenticated = function (req, res, next) {
 exports.setup = function (app) {
 
     // Setup login route
-    app.post('/login', passport.authenticate('local', {   
+    app.post('/api/login', passport.authenticate('local', {   
         successRedirect: '/api/user',
         failureRedirect: '/login'
         /*failureFlash: true */
     })); 
 
     // Setup logout route
-    app.get('/logout', function(req, res){
+    app.get('/api/logout', function(req, res){
         req.logout();
         res.redirect('/');
     });
