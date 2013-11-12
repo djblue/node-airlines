@@ -1,0 +1,52 @@
+<!doctype html>
+<html ng-app = "app">
+    <head>
+        <script src="http://code.angularjs.org/1.2.0-rc.3/angular.min.js"></script>
+        <!--fake data-->
+        <script src="/javascripts/fData.js"></script>
+        <script src="/javascripts/search_script.js"></script>
+    </head>
+  
+    <body>
+
+        <!--Search by from, to and date-->
+        <div ng-controller="Cntrl">
+            From :
+            <select ng-model="dep" ng-options="l.city group by l.state for l in locations">
+            </select><br/>
+            To :
+            <select ng-model="des" ng-options="f.destination._location.city group by f.destination._location.state for f in flights | filter :{departure._location.city : dep.city} | uniqueDes" >
+            </select><br/>
+            Date :
+            <select ng-model="date1" ng-options="f.departure.date for f in flights | filter :{departure._location.city : dep.city}| filter :{destination._location.city : des.destination._location.city} | uniqueDates">
+            </select><br/>
+
+            <!--
+            <select ng-model="des" ng-options="l.city group by l.state for l in locations">
+            </select><br/>
+            Date :
+            <select ng-model="date1" ng-options="d.date for d in dates">
+            </select><br/>
+            -->
+            <!--
+            date : {{date1}}
+            Locations : {{dep.city}}
+            Locations : {{des}}
+            -->
+
+            <table>
+                <tr><th>departure</th><th>destination</th><th>date</th><th>price</th><th>seats</th></tr>
+                <tr ng-repeat="flight in flights | filter :{departure._location.city : dep.city}| filter :{destination._location.city : des.destination._location.city}| filter :{departure.date : date1.departure.date}">
+                <td>{{flight.departure._location.city}},{{flight.departure._location.state}}</td>
+                <td>{{flight.destination._location.city}},{{flight.destination._location.state}}</td>
+                <td>{{flight.departure.date}}</td>
+                <td>{{flight.price|currency:"$"}}</td>
+                <td>{{flight.available}}/{{flight.total}}</td>
+            </table>
+        </div>
+
+    </body>
+
+</html>
+
+
