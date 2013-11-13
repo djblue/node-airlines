@@ -24,6 +24,24 @@ var app = angular.module('app', ['$strap.directives'])
 function signupCtrl($scope) {
 };
 
+// Authentication controller
+function Auth($scope){
+
+    // just watch only to print to the console 
+    // otherwise the func. would be call every time 
+    // user or pass change (as u enter char)
+
+    //just watch for changes on use 
+    $scope.$watch('user', function() {
+       console.log($scope.user +" "+ $scope.pass);
+    });
+
+    //just watch for changes on pass
+    $scope.$watch('pass', function() {
+       console.log($scope.user +" "+ $scope.pass);
+    });
+
+}
 
 function citySearch($scope, $http) {
 

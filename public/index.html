@@ -126,14 +126,20 @@
               <form style="padding-top: 20px; margin: 0 auto; width: 300px; text-align: center;" action="/api/login" method="post" accept-charset="UTF-8">
               <div>
               </div>
-              <div class="input-prepend">
-                <span class="add-on"><i class="icon-user"></i></span>
-                <input id="username" type="text" name="username" placeholder="username" size="30" />
+
+
+              <div ng-controller = "Auth">
+                  <div class="input-prepend">
+                    <span class="add-on"><i class="icon-user"></i></span>
+                    <input ng-model= "user" id="username" type="text" name="username" placeholder="username" size="30" />
+                  </div>
+                  <div class="input-prepend">
+                    <span class="add-on"><i class="icon-lock"></i></span>
+                    <input ng-model= "pass" id="password" type="password" name="password" placeholder="password" size="30" />
+                  </div>
               </div>
-              <div class="input-prepend">
-                <span class="add-on"><i class="icon-lock"></i></span>
-                <input id="password" type="password" name="password" placeholder="password" size="30" />
-              </div>
+
+
               <div style="padding-bottom: 10px">
                 <input  class="btn btn-primary" style="margin-left: 15px;" type="submit" name="commit" value="Sign In" />
               </div>
