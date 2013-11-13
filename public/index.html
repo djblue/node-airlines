@@ -1,14 +1,155 @@
-<html>
+<!doctype html>
+<html lang="en" ng-app="app">
 <head>
+    <title>Node Airlines</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-type" content="text/html; charset=utf-8"0>
-    <title>Home</title>
+    <!-- livereload for testing -->
     <script src="//localhost:35729/livereload.js"></script>
-    <script data-main="/javascripts/main.js" 
-        src="/javascripts/components/requirejs/require.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-strap/0.7.4/angular-strap.min.js"></script>
+    <script
+    src="http://mgcrea.github.io/angular-strap/vendor/bootstrap-datepicker.js"></script>
+    <!--fake data-->
+    <script src="/javascripts/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+    href="http://mgcrea.github.io/angular-strap/vendor/bootstrap-datepicker.css">
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css">
+    <script>
+        $(function() {
+          // Setup drop down menu
+          $('.dropdown-toggle').dropdown();
+         
+          // Fix input element click problem
+          $('.dropdown input, .dropdown label').click(function(e) {
+            e.stopPropagation();
+          });
+        }); 
+    </script>
+    <style>
+        .shadow {
+            -moz-box-shadow:    inset 0 0 10px #000000;
+            -webkit-box-shadow: inset 0 0 10px #000000;
+            box-shadow:         inset 0 0 10px #000000;
+        }
+         .header {
+            margin-top: -20px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: 20px;
+            position: relative;
+            background: #8cc84b;
+            color: #46483e;
+            height: 300px;
+         }
+         .header:after {
+            content: " ";
+            background-image:
+            url('http://www.clker.com/cliparts/F/d/p/v/T/k/plane.svg');
+            background-size: 400px 100%;
+            background-repeat:no-repeat;
+            background-position: right center; 
+            opacity: 0.6;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+         }
+         .header h1, p , h2{
+            padding-left: 40px;
+         }
+         .header p , h2{
+            color: #fff;
+         }
+         .header h1 {
+            padding-top: 40px;
+            font-size: 64px;
+            line-height: 64px;
+         }
+        @media (min-width: 980px) {
+            .body {
+                padding-top: 20px;
+            }
+            .header {
+                height: 400px;
+                margin: 0;
+                margin-top: 40px;
+            }
+         }
+        @media (max-width: 720px) {
+            .header:after {
+                background-image: none;
+            }
+            .header {
+                height: 100%;
+            }
+            .header h1, h2, p {
+                text-align: center;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p>
-        It works.
-    </p>
+
+<!-- navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" bs-navbar>
+  <div class="navbar-inner">
+    <div class="container">
+      <!-- collapse button menu -->
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <!-- site header -->
+      <a class="brand" href="#">Node Airlines</a>
+      <div class="nav-collapse collapse">
+        <!-- important links -->
+        <ul class="nav">
+          <li data-match-route="/(:?about)"><a href="#/about">About</a></li>
+          <li data-match-route="/(:?help)"><a href="#/help">Help</a></li>
+          <li data-match-route="/(:?contact)"><a href="#/contact">Contact Us</a></li>
+        </ul>
+        <!-- sign-up link and login form -->
+        <ul class="nav pull-right">
+          <li data-match-route="/(:?signup)"><a href="#/signup">Sign Up</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sign In<b class="caret"></b></a>
+            <ul style="text-align: center;" class="dropdown-menu">
+              <form style="padding-top: 20px; margin: 0 auto; width: 300px; text-align: center;" action="/api/login" method="post" accept-charset="UTF-8">
+              <div>
+              </div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-user"></i></span>
+                <input id="username" type="text" name="username" placeholder="username" size="30" />
+              </div>
+              <div class="input-prepend">
+                <span class="add-on"><i class="icon-lock"></i></span>
+                <input id="password" type="password" name="password" placeholder="password" size="30" />
+              </div>
+              <div style="padding-bottom: 10px">
+                <input  class="btn btn-primary" style="margin-left: 15px;" type="submit" name="commit" value="Sign In" />
+              </div>
+              </form>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div ng-view></div>
+
+<div class="footer"></div>
+
 </body>
 </html>

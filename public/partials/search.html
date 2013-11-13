@@ -1,0 +1,53 @@
+<!-- Header Unit -->
+<div class="header shadow">
+    <h1>Node Airlines</h1>
+    <h2>Fly Right.</h2>
+    <p class="lead">Always find the perfect flight.</p>
+</div>
+
+
+<div class="body container" ng-controller="citySearch">
+  <p style="text-align: center">Just let us know where you <b>are</b> and
+  where you want to <b>go</b> and we will take care of the rest.</p>
+
+  <!-- search form -->
+  <form class="row-fluid" ng-submit="search()">
+    <div style="min-height: 30px;" class="well">
+      <div class="span3">
+        <input class="span12" type="text" placeholder="select departure"
+          ng-model="departure" bs-typeahead="typeahead" required>
+      </div>
+      <div class="span3">
+        <input class="span12" type="text" placeholder="select destination"
+          ng-model="destination" bs-typeahead="typeahead" required>
+      </div>
+      <div class="span3">
+        <input type="text" ng-model="datepicker.date" class="span12"
+          placeholder="select date"
+            data-date-format="dd/mm/yyyy" bs-datepicker>
+      </div>
+      <div class="span3">
+        <input class="span12" placeholder="select price"
+          type="text">
+      </div>
+    </div>
+    <input class="btn btn-primary pull-right"type="submit" 
+      id="submit" value="Search" />
+  </form>
+
+  <!-- search result table -->
+  <table style="display: {{ display }};" class="table table-striped"> 
+    <tr>
+      <th>Departure Date</th>
+      <th>Arrival Date</th>
+      <th>Availability</th>
+      <th>Price</th>
+    </tr>
+    <tr ng-repeat="flight in find">
+      <td>{{ flight.departure.date | date:'dd/MM/yyyy' }}</td>
+      <td>{{ flight.destination.date | date:'dd/MM/yyyy' }}</td>
+      <td>{{ flight.available }}</td>
+      <td>{{ flight.price | currency }}</td>
+    </tr>
+  </table>
+</div>
