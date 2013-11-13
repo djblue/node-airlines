@@ -27,14 +27,14 @@ Get all of the information of the current user.
 
 Purchase a flight.
 
-    GET /api/user/:flight_id
+    GET /api/user/flights/:id
 
 ### Cancel:
 
 Cancel a flight. The user will receive 50% of the original cost of the
 flight. 
 
-    DELETE /api/user/:flight_id
+    DELETE /api/user/flights/:id
 
 ## Locations
 

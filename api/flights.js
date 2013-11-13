@@ -3,7 +3,7 @@ var mongoose  = require('mongoose')
  ,  Schema    = mongoose.Schema
  ,  Location  = require('./locations').Location;
 
-var Flight = mongoose.model('Flight', {
+var Flight = exports.Flight = mongoose.model('Flight', {
     departure:  {
         date: Date,
         location: {type: Number, ref: 'Location'}
