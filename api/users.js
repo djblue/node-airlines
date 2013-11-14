@@ -152,12 +152,7 @@ var signup = function (req, res) {
                     });
 
                     user.save();
-                    req.login(user, function (err) {
-                        res.json(200, {
-                            status: 200,
-                            message: 'successful signup'
-                        })
-                    });
+                    res.redirect('/');
                 }
             });
         }

@@ -8,15 +8,25 @@
 <div class="container">
   <div class="well">    
     <form id="signup" class="form-horizontal" method="post" 
-      action="/api/signup">
+      action="/api/user">
       <legend>Sign Up</legend>        
+      <div class="control-group ">
+        <label class="control-label">Username</label>
+        <div class="controls">
+          <div class="input-prepend">
+            <span class="add-on"><i class="icon-user"></i></span>
+            <input type="text" class="input-xlarge" id="lname" 
+              name="username" placeholder="Username" required>
+          </div>
+        </div>
+      </div>
       <div class="control-group">
         <label class="control-label">First Name</label>
         <div class="controls">
           <div class="input-prepend">
             <span class="add-on"><i class="icon-user"></i></span>
             <input type="text" class="input-xlarge" id="fname"  
-              name="fname" placeholder="First Name">
+              name="firstname" placeholder="First Name" required>
           </div>
         </div>
       </div>
@@ -26,7 +36,7 @@
           <div class="input-prepend">
             <span class="add-on"><i class="icon-user"></i></span>
             <input type="text" class="input-xlarge" id="lname" 
-              name="lname" placeholder="Last Name">
+              name="lastname" placeholder="Last Name" required>
           </div>
         </div>
       </div>
@@ -35,21 +45,10 @@
         <div class="controls">
           <div class="input-prepend">
             <span class="add-on"><i class="icon-envelope"></i></span>
-            <input type="text" class="input-xlarge" id="email" 
-              name="email" placeholder="Email">
+            <input type="email" class="input-xlarge" id="email" 
+              name="email" placeholder="Email" required>
           </div>
         </div>  
-      </div>
-      <div class="control-group">
-        <label class="control-label">Gender</label>
-        <div class="controls">
-          <p><div class="btn-group" data-toggle="buttons-radio">  
-            <button type="button" required="required" name="gender"  
-              id="gender" class="btn btn-info">Male</button>  
-            <button type="button" required="required" name="gender"  
-              id="gender" class="btn btn-info">Female</button>  
-          </div></p>
-        </div>
       </div>
       <div class="control-group">
         <label class="control-label">Password</label>
@@ -57,7 +56,7 @@
           <div class="input-prepend">
             <span class="add-on"><i class="icon-lock"></i></span>
             <input type="Password" id="passwd" class="input-xlarge"  
-              name="passwd" placeholder="Password">
+              name="password" placeholder="Password" required>
           </div>
         </div>
       </div>
@@ -66,8 +65,9 @@
         <div class="controls">
           <div class="input-prepend">
             <span class="add-on"><i class="icon-lock"></i></span>
-            <input type="Password" id="conpasswd" class="input-xlarge"  
-              name="conpasswd" placeholder="Re-enter Password">
+            <input type="Password" id="conpasswd"
+            class="input-xlarge"  name="conpasswd"
+            placeholder="Re-enter Password" required>
           </div>
         </div>
       </div>
