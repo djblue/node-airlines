@@ -8,7 +8,10 @@ var mongoose  = require('mongoose')
 var User = exports.User = mongoose.model('User', {
     admin: Boolean,
     username: String,
+    firstname: String,
+    lastname: String,
     password: String,
+    email: String,
     flights: [{type: Schema.Types.ObjectId, ref: 'Flight'}]
 });
 
@@ -100,11 +103,74 @@ var cancel = function (req, res) {
     }
 };
 
+var signup = function (req, res) {
+    // ensure user isn't logged in
+    if (!!req.user) {
+        res.json(409, {
+            status: 409,
+            message: 'can\'t signup while logged it'
+        })
+    } else {
+        // check for correct request parameters
+        var b = req.body; // shortcut
+        if (!b.firstname || !b.lastname || 
+            !b.username  || !b.password || !b.email) {
+            res.json(400, {
+                status: 400,
+                message: 'missing required fields',
+                required: [
+                    'firstname',
+                    'lastname', 
+                    'username', 
+                    'password',
+                    'email'
+                ]
+            })
+            
+        } else {
+            User.findOne({username: b.username}, function (err, user) {
+                // database error
+                if (err) {
+                    res.json(500, { statue: 500, 
+                        message: 'internal server error',
+                        error: err
+                    });
+                // user exists, pick a new one please
+                } else if (!!user) {
+                    res.json(400, { statue: 400, 
+                        message: 'username alreay registered',
+                    });
+                // congrats on the signup
+                } else {
+
+                    var user = new User({
+                        firstname:  b.firstname,
+                        lastname:   b.lastname, 
+                        username:   b.username, 
+                        password:   b.password,
+                        email:      b.email
+                    });
+
+                    user.save();
+                    req.login(user, function (err) {
+                        res.json(200, {
+                            status: 200,
+                            message: 'successful signup'
+                        })
+                    });
+                }
+            });
+        }
+    }
+};
+
 exports.setup = function (app) {
 
     app.get('/api/user', auth.isAuthenticated, function (req, res) {
         res.json(req.user);
     });
+
+    app.post('/api/user', signup)
 
     app.get('/api/user/flights/:id', auth.isAuthenticated, purchase);
     app.del('/api/user/flights/:id', auth.isAuthenticated, cancel);

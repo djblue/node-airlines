@@ -23,6 +23,16 @@ Get all of the information of the current user.
 
     GET /api/user
 
+### Signup:
+
+To sign-up or register to the api, you need to make the following request.
+
+    POST /api/user
+
+The server expects and object with a firstname, lastname, username,
+email, password. The username will be checked for uniqueness. No further
+validation is performed.
+
 ### Purchase:
 
 Purchase a flight.
