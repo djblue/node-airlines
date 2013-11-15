@@ -36,18 +36,20 @@
   </form>
 
   <!-- search result table -->
-  <table style="display: {{ display }};" class="table table-striped"> 
+  <table style="display: {{ display }};" class="table table-hover table-striped"> 
     <tr>
       <th>Departure Date</th>
       <th>Arrival Date</th>
       <th>Availability</th>
       <th>Price</th>
+      <th>Purchase</th>
     </tr>
     <tr ng-repeat="flight in find">
       <td>{{ flight.departure.date | date:'dd/MM/yyyy' }}</td>
       <td>{{ flight.destination.date | date:'dd/MM/yyyy' }}</td>
       <td>{{ flight.available }}</td>
       <td>{{ flight.price | currency }}</td>
+      <td><a href="/api/user/flights/{{flight._id}}">Buy</a></td>
     </tr>
   </table>
 </div>

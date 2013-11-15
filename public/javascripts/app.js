@@ -36,6 +36,10 @@ app.service('userService', function ($http, $rootScope) {
         }
     });
 
+    this.getUser = function () {
+        return this.user;
+    };
+
     this.login = function (user, pass, call) {
         $http.post('/api/login', {
             username: user,
@@ -76,6 +80,8 @@ function userCtrl($scope, $http, userService){
         $scope.logged = true;
         $scope.user = user;
     });
+
+    $scope.$watch('userService', function () {
 }
 
 function citySearch($scope, $http) {

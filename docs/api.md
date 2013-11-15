@@ -56,7 +56,9 @@ Query database for all possible locations.
 
 An example location object is shown below:
 
+```javascript
     { "_id" : 20, "city" : "Annapolis", "state" : "Maryland" }
+```
 
 ## Flights
 
