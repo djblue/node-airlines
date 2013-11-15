@@ -15,8 +15,7 @@ var app = angular.module('app', ['$strap.directives'])
                 templateUrl: 'partials/contact.html'
             }).
             when('/signup', {
-                templateUrl: 'partials/signup.html',
-                controller: 'signupCtrl'
+                templateUrl: 'partials/signup.html'
             }).
             when('/user', {
                 templateUrl: 'partials/user.html'
@@ -24,33 +23,59 @@ var app = angular.module('app', ['$strap.directives'])
             otherwise({ redirectTo: '/' });
     }]);
 
-function signupCtrl($scope) {
-};
+app.service('userService', function ($http, $rootScope) {
 
-// Authentication controller
-function userCtrl($scope, $http){
-
-    $scope.logged = false;
+    this.user = {};
 
     // try to get user info
     $http.get('/api/user').success(function (data) {
         if (!!data.username) {
-            $scope.user = data;
-            $scope.logged = true;
+            this.user = data;
+            this.logged = true;
+            $rootScope.$broadcast( 'userService.logged', this.user );
         }
     });
 
-    $scope.login = function () {
+    this.login = function (user, pass, call) {
         $http.post('/api/login', {
-            username: $scope.user ,
-            password: $scope.pass
+            username: user,
+            password: pass 
         }).success(function (data) {
             if (!!data.username) {
-                $scope.user = data;
-                $scope.logged = true;
+                this.user = data;
+                this.logged = true;
+                call();
+                $rootScope.$broadcast( 'userService.logged', this.user );
+            }
+        }).error(function () {
+            call(true);
+        });
+    };
+});
+
+// Authentication controller
+function userCtrl($scope, $http, userService){
+
+    $scope.alerts = [];
+
+    $scope.login = function () {
+        userService.login($scope.user, $scope.pass, function (err) {
+            if (err) {
+                $scope.alerts = [{
+                    type: 'error',
+                    title: 'Login Error',
+                    content: 'Unable to log in user.'
+                }];
+            } else {
+                $scope.hide();
             }
         });
     };
+
+    $scope.$on('userService.logged', function (event, user) {
+        $scope.logged = true;
+        $scope.user = user;
+    });
 }
 
 function citySearch($scope, $http) {
