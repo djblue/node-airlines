@@ -31,6 +31,19 @@
         }); 
     </script>
     <style>
+        html, body {
+            height: 92%;
+        }
+        .wrapper {
+            min-height: 100%;
+            height: auto !important;
+            height: 100%;
+        }
+        #footer {
+            margin: 15px;
+            padding-top: 10px;
+            border-top: 1px #aaa solid;
+        }
         .shadow {
             -moz-box-shadow:    inset 0 0 10px #000000;
             -webkit-box-shadow: inset 0 0 10px #000000;
@@ -143,9 +156,14 @@
   </div>
 </div>
 
-<div ng-view></div>
+<div class="wrapper" ng-view></div>
 
-<div class="footer"></div>
+<div id="footer">
+<p id="copyright" property="dc:rights">&copy;
+<span property="dc:dateCopyrighted">2013</span>
+<span property="dc:publisher">Node Airlines Corporation</span>
+</p>
+</div>
 
 </body>
 </html>
