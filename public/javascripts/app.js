@@ -18,6 +18,9 @@ var app = angular.module('app', ['$strap.directives'])
                 templateUrl: 'partials/signup.html',
                 controller: 'signupCtrl'
             }).
+            when('/user', {
+                templateUrl: 'partials/user.html'
+            }).
             otherwise({ redirectTo: '/' });
     }]);
 
@@ -25,22 +28,29 @@ function signupCtrl($scope) {
 };
 
 // Authentication controller
-function Auth($scope){
+function userCtrl($scope, $http){
 
-    // just watch only to print to the console 
-    // otherwise the func. would be call every time 
-    // user or pass change (as u enter char)
+    $scope.logged = false;
 
-    //just watch for changes on use 
-    $scope.$watch('user', function() {
-       console.log($scope.user +" "+ $scope.pass);
+    // try to get user info
+    $http.get('/api/user').success(function (data) {
+        if (!!data.username) {
+            $scope.user = data;
+            $scope.logged = true;
+        }
     });
 
-    //just watch for changes on pass
-    $scope.$watch('pass', function() {
-       console.log($scope.user +" "+ $scope.pass);
-    });
-
+    $scope.login = function () {
+        $http.post('/api/login', {
+            username: $scope.user ,
+            password: $scope.pass
+        }).success(function (data) {
+            if (!!data.username) {
+                $scope.user = data;
+                $scope.logged = true;
+            }
+        });
+    };
 }
 
 function citySearch($scope, $http) {

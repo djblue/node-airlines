@@ -41,8 +41,7 @@ exports.setup = function (app) {
 
     // Setup login route
     app.post('/api/login', passport.authenticate('local', {   
-        successRedirect: '/api/user',
-        failureRedirect: '/login'
+        successRedirect: '/api/user'
         /*failureFlash: true */
     })); 
 
