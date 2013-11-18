@@ -132,7 +132,7 @@
         </ul>
         <!-- sign-up link and login form -->
         
-        <div ng-controller="authCtrl">
+        <div ng-controller="userCtrl">
 
         <div ng-show="logged">
         <ul class="nav pull-right">
@@ -157,13 +157,15 @@
   </div>
 </div>
 
-<div class="wrapper" ng-view></div>
+<div ng-view></div>
 
-<div id="footer">
-<p id="copyright" property="dc:rights">&copy;
-<span property="dc:dateCopyrighted">2013</span>
-<span property="dc:publisher">Node Airlines Corporation</span>
-</p>
+<div class="footer">
+    <p class="text-center">
+        <i class="icon-question-sign"></i>
+        <a href="#/contact">Have a suggestion?</a><br>
+          We appreciate your feedback!<br><br>
+          Thank you for using Node Airlines. Fly with us again soon!<br>
+        <small>&copy; 2013 Node Airlines, Inc.</small>
 </div>
 
 </body>
