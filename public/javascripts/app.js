@@ -38,10 +38,6 @@ app.service('userService', function ($http, $rootScope) {
         }
     });
 
-    this.getUser = function () {
-        return this.user;
-    };
-
     this.login = function (user, pass, call) {
         $http.post('/api/login', {
             username: user,
@@ -79,6 +75,15 @@ function userCtrl($scope, $http, userService){
 
     // allow a user to cancel a flight
     $scope.cancel = function (id) {
+        $http.delete('/api/user/flights/' + id).success(function () {
+            $.each($scope.status.user.flights, function (i, value) {
+                console.log(value);
+                if (!!value && value._id == id) {
+                    $scope.status.user.flights.splice(i,1);
+                    return; // we are done
+                }
+            });
+        });
     };
 }
 
