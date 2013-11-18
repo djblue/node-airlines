@@ -132,17 +132,17 @@
         </ul>
         <!-- sign-up link and login form -->
         
-        <div ng-controller="authCtrl">
+        <div ng-controller="userCtrl">
 
-        <div ng-show="logged">
+        <div ng-show="status.logged">
         <ul class="nav pull-right">
           <li data-match-route="/(:?user)">
-            <a href="#/user">{{ user.username }}</a></li>
+            <a href="#/user">{{ status.user.username }}</a></li>
           <li><a href="/api/logout">Sign Out</a></li>
         </ul>
         </div>
         
-        <div ng-show="!logged">
+        <div ng-show="!status.logged">
         <ul class="nav pull-right">
           <li data-match-route="/(:?signup)">
             <a href="#/signup">Sign Up</a></li>

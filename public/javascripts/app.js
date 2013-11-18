@@ -23,16 +23,18 @@ var app = angular.module('app', ['$strap.directives'])
             otherwise({ redirectTo: '/' });
     }]);
 
+// Authentication service 
 app.service('userService', function ($http, $rootScope) {
 
-    this.user = {};
+    var self = this;
 
-    // try to get user info
+    self.status = { logged: false };
+
+    // Try to get user data on service startup
     $http.get('/api/user').success(function (data) {
         if (!!data.username) {
-            this.user = data;
-            this.logged = true;
-            $rootScope.$broadcast( 'userService.logged', this.user );
+            self.status['user'] = data;
+            self.status.logged = true;
         }
     });
 
@@ -46,10 +48,9 @@ app.service('userService', function ($http, $rootScope) {
             password: pass 
         }).success(function (data) {
             if (!!data.username) {
-                this.user = data;
-                this.logged = true;
-                call();
-                $rootScope.$broadcast( 'userService.logged', this.user );
+                self.status['user'] = data;
+                self.status.logged = true;
+                call(false, data);
             }
         }).error(function () {
             call(true);
@@ -57,13 +58,13 @@ app.service('userService', function ($http, $rootScope) {
     };
 });
 
-// Authentication controller
 function userCtrl($scope, $http, userService){
 
     $scope.alerts = [];
+    $scope.status = userService.status;
 
     $scope.login = function () {
-        userService.login($scope.user, $scope.pass, function (err) {
+        userService.login($scope.username, $scope.password, function (err, user) {
             if (err) {
                 $scope.alerts = [{
                     type: 'error',
@@ -76,12 +77,9 @@ function userCtrl($scope, $http, userService){
         });
     };
 
-    $scope.$on('userService.logged', function (event, user) {
-        $scope.logged = true;
-        $scope.user = user;
-    });
-
-    $scope.$watch('userService', function () {
+    // allow a user to cancel a flight
+    $scope.cancel = function (id) {
+    };
 }
 
 function citySearch($scope, $http) {
