@@ -81,7 +81,10 @@ function userCtrl($scope, $http, userService){
         $scope.user = user;
     });
 
-    $scope.$watch('userService', function () {
+    
+    $scope.$watch('user', function () {
+        console.log($scope.user);
+    });
 }
 
 function citySearch($scope, $http) {
