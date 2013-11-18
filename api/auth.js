@@ -39,6 +39,14 @@ exports.isAuthenticated = function (req, res, next) {
     }
 };
 
+exports.isAdmin = function (req, res, next) {
+    if (req.isAuthenticated() && req.user.admin == true) { 
+        return next(null); 
+    } else {
+        res.redirect('/');
+    }
+};
+
 exports.setup = function (app) {
 
     // Setup login route

@@ -1,5 +1,6 @@
 // Flights search api.
 var mongoose  = require('mongoose')
+ ,  auth      = require('./auth')
  ,  Schema    = mongoose.Schema
  ,  Location  = require('./locations').Location;
 
@@ -135,10 +136,29 @@ var search = function (req, res) {
     }
 };
 
+var add = function (req, res) {
+    var f = new Flight(req.body);
+    f.save(function (err) {
+        if (err) {
+            res.json(500, {
+                status: 500,
+                message: 'unable to add flight',
+                error: err
+            });
+        } else {
+            res.json(201, {
+                status: 201,
+                message: 'flight successfully created'
+            });
+        }
+    }); 
+};
+
 // Require express app and setup the appropriate routes.
 exports.setup = function (app) {
     
     app.get('/api/flights', search);
+    app.post('/api/flights', auth.isAdmin, add);
 
     // Populate database with fake flights if its empty
     Flight.find({}, function (err, docs){
