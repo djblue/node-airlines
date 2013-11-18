@@ -1,6 +1,28 @@
 <style>
     @media (min-width: 980px) { body { margin-top: 60px; } }
 </style>
-<div ng-controller="userCtrl">
-<h1>{{user}}</h1>
+<div class="container" ng-controller="userCtrl">
+  <h1>{{ status.user.username }}
+  <small style="text-transform: capitalize">
+    {{ status.user.firstname }} 
+    {{ status.user.lastname }}
+ </small>
+ </h1>
+  <table style="display: {{ display }};" class="table table-striped"> 
+    <tr>
+      <th>Departure Date</th>
+      <th>Arrival Date</th>
+      <th>Availability</th>
+      <th>Price</th>
+      <th>Cancel</th>
+    </tr>
+    <tr ng-repeat="flight in status.user.flights">
+      <td>{{ flight.departure.date | date:'dd/MM/yyyy' }}</td>
+      <td>{{ flight.destination.date | date:'dd/MM/yyyy' }}</td>
+      <td>{{ flight.available }}</td>
+      <td>{{ flight.price | currency }}</td>
+      <td><button class="btn btn-danger"
+      ng-click="cancel(flight._id)">Cancel</button></td>
+    </tr>
+  </table>
 </div>

@@ -24,13 +24,23 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-    User.findById(id).exec(function(err, user) {
-        done(err, user);
+    User.findById(id)
+        .populate('flights').
+        exec(function(err, user) {
+            done(err, user);
     });
 });
 
 exports.isAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) { 
+        return next(null); 
+    } else {
+        res.redirect('/');
+    }
+};
+
+exports.isAdmin = function (req, res, next) {
+    if (req.isAuthenticated() && req.user.admin == true) { 
         return next(null); 
     } else {
         res.redirect('/');

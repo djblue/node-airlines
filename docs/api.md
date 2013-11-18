@@ -115,3 +115,10 @@ when the flights api is queried.
     }
 }
 ```
+
+### Add a Glight
+
+Add a flight object to the database. The format is similar to the one
+above.
+
+    POST /api/flights

@@ -70,7 +70,7 @@ var purchase = function (req, res) {
 var cancel = function (req, res) {
 
     var find = _.find(req.user.flights, function (flight) {
-        return String(req.params.id) === String(flight);
+        return String(req.params.id) === String(flight._id);
     });
 
     if (find === undefined) {
