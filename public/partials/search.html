@@ -10,6 +10,9 @@
   <p style="text-align: center">Just let us know where you <b>are</b> and
   where you want to <b>go</b> and we will take care of the rest.</p>
 
+  <div class="alert fade" ng-repeat="alert in alerts"
+  bs-alert="alert"></div>
+
   <!-- search form -->
   <form class="row-fluid" ng-submit="search()">
     <div style="min-height: 30px;" class="well">
@@ -49,7 +52,7 @@
       <td>{{ flight.destination.date | date:'dd/MM/yyyy' }}</td>
       <td>{{ flight.available }}</td>
       <td>{{ flight.price | currency }}</td>
-      <td><a href="/api/user/flights/{{flight._id}}">Buy</a></td>
+      <td><button class="btn btn-primary" ng-click="buy(flight._id)">Buy</button></td>
     </tr>
   </table>
 </div>

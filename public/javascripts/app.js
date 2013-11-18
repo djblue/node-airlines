@@ -77,7 +77,6 @@ function userCtrl($scope, $http, userService){
     $scope.cancel = function (id) {
         $http.delete('/api/user/flights/' + id).success(function () {
             $.each($scope.status.user.flights, function (i, value) {
-                console.log(value);
                 if (!!value && value._id == id) {
                     $scope.status.user.flights.splice(i,1);
                     return; // we are done
@@ -87,7 +86,9 @@ function userCtrl($scope, $http, userService){
     };
 }
 
-function citySearch($scope, $http) {
+function citySearch($scope, $http, userService) {
+
+    $scope.alerts = [];
 
     $scope.display = 'none';
 
@@ -119,6 +120,25 @@ function citySearch($scope, $http) {
             });
         }
     }
+
+    $scope.buy = function (id) {
+        if (userService.status.logged == true) {
+            $http.get('/api/user/flights/'+id).success(function () {
+                $scope.alerts = [{
+                    type: 'success',
+                    title: 'Success',
+                    content: 'Ticket purchased successfully'
+                    + ' <a href="#/user">view</a>.'
+                }];
+            });
+        } else {
+            $scope.alerts = [{
+                type: 'error',
+                title: 'User Error',
+                content: 'Please login to purchase a ticket.'
+            }];
+        }
+    };
 }
 
 function Cntrl($scope){
