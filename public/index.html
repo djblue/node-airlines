@@ -135,6 +135,8 @@
 
         <div ng-show="status.logged">
         <ul class="nav pull-right">
+          <li ng-show="status.user.admin" data-match-route="/(:?manage)">
+            <a href="#/manage">Manage</a></li>
           <li data-match-route="/(:?user)">
             <a href="#/user">{{ status.user.username }}</a></li>
           <li><a href="/api/logout">Sign Out</a></li>

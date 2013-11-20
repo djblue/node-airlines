@@ -17,6 +17,9 @@ var app = angular.module('app', ['$strap.directives'])
             when('/signup', {
                 templateUrl: 'partials/signup.html'
             }).
+            when('/manage', {
+                templateUrl: 'partials/manage.html'
+            }).
             when('/user', {
                 templateUrl: 'partials/user.html'
             }).
@@ -54,6 +57,25 @@ app.service('userService', function ($http, $rootScope) {
     };
 });
 
+app.service('locationService', function ($http) {
+
+    var self = this;
+
+    this.getLocations = function (call) {
+        if (!!this.locations && !!this.typeahead) {
+            call(this.locations, this.typeahead);
+        } else {
+            $http.get('/api/locations').success(function (locations) {
+                self.locations = locations;
+                self.typeahead = $.map(locations, function (location) {
+                    return location.city + ', ' + location.state;
+                });
+                call(self.locations, self.typeahead);
+            });
+        }
+    };
+});
+
 function userCtrl($scope, $http, userService){
 
     $scope.alerts = [];
@@ -86,17 +108,14 @@ function userCtrl($scope, $http, userService){
     };
 }
 
-function citySearch($scope, $http, userService) {
+function citySearch($scope, $http, locationService, userService) {
 
     $scope.alerts = [];
-
     $scope.display = 'none';
 
-    $http.get('/api/locations').success(function (locations) {
-        $scope.locations = locations;
-        $scope.typeahead = $.map(locations, function (location) {
-            return location.city + ', ' + location.state;
-        });
+    locationService.getLocations(function (locs, type) {
+        $scope.locations = locs;
+        $scope.typeahead = type;
     });
     
     $scope.search = function () {
@@ -115,8 +134,16 @@ function citySearch($scope, $http, userService) {
             $http.get('/api/flights', { params: { 
                 dep: dep[0]._id, des: des[0]._id
             }}).success(function (data) {
-                $scope.find = data; 
-                $scope.display = '';
+                if (data.length != 0) {
+                    $scope.find = data; 
+                    $scope.display = '';
+                } else {
+                    $scope.alerts = [{
+                        type: 'error',
+                        title: 'Search Error',
+                        content: 'Unable to find a flight.'
+                    }];
+                }
             });
         }
     }
@@ -140,6 +167,64 @@ function citySearch($scope, $http, userService) {
         }
     };
 }
+
+function manageCtrl ($scope, $http, locationService, $location) {
+
+    $scope.alerts = [];
+
+    $scope.flight = {};
+
+    $scope.tabs = [
+        {title: 'Add', page: 'add.html'},
+        //{title: 'Edit', page: 'edit.html'},
+        //{title: 'Remove', page: 'remove.html'}
+    ];
+
+    locationService.getLocations(function (loc, type) {
+        $scope.locations = loc;
+        $scope.typeahead = type;
+    });
+
+    $scope.add = function () {
+        var from = $scope.flight.departure.split(',')[0];
+        var to   = $scope.flight.destination.split(',')[0];
+        var dep = $.grep($scope.locations, function (e) {
+            return e.city === from;
+        });
+        var des = $.grep($scope.locations, function (e) {
+            return e.city === to;
+        });
+
+        if (dep.length === 0 || dep.length === 0 || from === to) {
+            $scope.alerts = [{
+                type: 'error',
+                title: 'Location Error',
+                content: 'There is in error with the locations.'
+            }];
+        } else {
+            $http.post('/api/flights', {
+                departure: {
+                    date: new Date($scope.flight.date),
+                    location: dep[0]._id
+                },
+                destination: {
+                    date: new Date($scope.flight.date),
+                    location: des[0]._id
+                },
+                price: $scope.flight.price,
+                total: $scope.flight.total,
+                available: $scope.flight.total
+            }).success(function (data) {
+                $location.path("/manage") 
+                $scope.alerts = [{
+                    type: 'success',
+                    title: 'Flight Added',
+                    content: 'The flight was successfully added.'
+                }];
+            });
+        }
+    };
+};
 
 function Cntrl($scope){
 	//get locations scope
