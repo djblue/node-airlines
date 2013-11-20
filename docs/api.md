@@ -76,6 +76,8 @@ an empty array is returned.
   possible locations).
 - date: The initial date to search from. (YYYY-MM-DD)
 - cost: The _maximum_ cost to search.
+- limit: limit the number of results
+- page: page results
 
 ### Example:
 

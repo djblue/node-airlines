@@ -55,86 +55,70 @@ var init = function (app) {
 
 var search = function (req, res) {
     
-    // There must be some constrains for searching flights.
-    if (Object.keys(req.query).length === 0) {
+    var query = {};     // query object for database
 
-        Flight.find()
-            .limit(20)
-            .populate('departure.location destination.location')
-            .exec(function (err, docs) {
-                if (err) 
-                    res.json(err)
-                else
-                    res.json(docs);
-        });
+    var skip = 0;       // for paging purposes
+    var limit = 20;     // for paging purposes
 
-    // The two main constrains are departure and destination locations.
-    } else if (!req.query.dep) {
-    
-        res.send(500, {
-            status: 500,
-            message: 'Departure \'dep\'query parameter required.',
-            type: 'internal'
-        });
-
-    } else if (!req.query.des) {
-
-        res.send(500, {
-            status: 500,
-            message: 'Destination \'des\' query parameter required.',
-            type: 'internal'
-        });
-
-    // Handle the request assigning default to an unspecified query
-    // parameters.
-    } else {
-        
-        var query = {};
+    if (!!req.query.dep && req.query.dep >= 0) {
         query['departure.location'] = Number(req.query.dep);
-        query['destination.location'] = Number(req.query.des);
-
-        // Try to find a departure date parameter.
-        if (!!req.query.date) {
-
-            // Validate date format [YYYY-MM-DD].
-            if (!req.query.date.match(/\d{5}-\d{2}-\d{2}/)) {
-                query['departure.date'] = {
-                    '$gte': new Date(req.query.date)
-                };
-            } else {
-                res.send(500, {
-                    status: 500,
-                    message: '\'date\' query parameter not \'YYYY-MM-DD\'',
-                    type: 'internal'
-                });
-            }
-        } else { query['departure.date'] = { '$gte': new Date() }; }
-
-        // Default cost range. [0 - cost]
-        if (!!req.query.cost) {
-            if (req.query.cost >= 0 || req.query.cos < 0) {
-                query['price'] = {
-                    '$lte': Number(req.query.cost)
-                }
-            } else {
-                res.send(500, {
-                    status: 500,
-                    message: '\'cost\' query parameter not a number',
-                    type: 'internal'
-                });
-            }
-        }
-
-        Flight.find(query)
-            .limit(20)
-            .populate('departure.location destination.location')
-            .exec(function (err, docs) {
-                if (err) 
-                    res.end(500);
-                else
-                    res.json(docs);
-        });
     }
+
+    if (!!req.query.des && req.query.des >= 0) {
+        query['destination.location'] = Number(req.query.des);
+    }
+
+    if (!!req.query.page && req.query.page >= 1) {
+         skip = limit*Number(req.query.page);
+    }
+     
+    if (!!req.query.limit && 
+        req.query.limit >= 1 && req.query.limit <= 100) {
+         limit = Number(req.query.limit);
+    }
+
+    // Try to find a departure date parameter.
+    if (!!req.query.date) {
+
+        // Validate date format [YYYY-MM-DD].
+        if (!req.query.date.match(/\d{5}-\d{2}-\d{2}/)) {
+            query['departure.date'] = {
+                '$gte': new Date(req.query.date)
+            };
+        } else {
+            res.send(500, {
+                status: 500,
+                message: '\'date\' query parameter not \'YYYY-MM-DD\'',
+                type: 'internal'
+            });
+        }
+    } else { query['departure.date'] = { '$gte': new Date() }; }
+
+    // Default cost range. [0 - cost]
+    if (!!req.query.cost) {
+        if (req.query.cost >= 0 || req.query.cos < 0) {
+            query['price'] = {
+                '$lte': Number(req.query.cost)
+            }
+        } else {
+            res.send(500, {
+                status: 500,
+                message: '\'cost\' query parameter not a number',
+                type: 'internal'
+            });
+        }
+    }
+
+    Flight.find(query)
+        .skip(skip)
+        .limit(limit)
+        .populate('departure.location destination.location')
+        .exec(function (err, docs) {
+            if (err) 
+                res.end(500);
+            else
+                res.json(docs);
+    });
 };
 
 var add = function (req, res) {
