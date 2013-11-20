@@ -60,7 +60,8 @@ var search = function (req, res) {
     if (Object.keys(req.query).length === 0) {
 
         Flight.find()
-            .populate('departure.location')
+            .limit(20)
+            .populate('departure.location destination.location')
             .exec(function (err, docs) {
                 if (err) 
                     res.json(err)
@@ -90,8 +91,8 @@ var search = function (req, res) {
     } else {
         
         var query = {};
-        query['departure.location'] = req.query.dep;
-        query['destination.location'] = req.query.des;
+        query['departure.location'] = Number(req.query.dep);
+        query['destination.location'] = Number(req.query.des);
 
         // Try to find a departure date parameter.
         if (!!req.query.date) {
@@ -126,7 +127,8 @@ var search = function (req, res) {
         }
 
         Flight.find(query)
-            .populate('departure.location destination.location').limit(20)
+            .limit(20)
+            .populate('departure.location destination.location')
             .exec(function (err, docs) {
                 if (err) 
                     res.end(500);

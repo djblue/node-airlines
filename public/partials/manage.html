@@ -1,0 +1,65 @@
+<style>
+    @media (min-width: 980px) { body { margin-top: 60px; } }
+</style>
+
+
+<div ng-controller="manageCtrl" class="container">
+
+
+<div class="alert fade" ng-repeat="alert in alerts"
+bs-alert="alert"></div>
+
+<div data-fade="1" ng-model="activeTab" bs-tabs>
+  <div ng-repeat="tab in tabs" data-title="{{tab.title}}">
+    <div ng-include src="tab.page"></div>
+  </div>
+</div>
+
+<!-- Create Form -->
+<script type="text/ng-template" id="add.html">
+<form  ng-submit="add()" class="form-horizontal">
+  <legend>Add a Flight</legend>
+  <div class="control-group">
+    <label class="control-label" for="dep">Departure</label>
+    <div class="controls">
+      <input id="dep" type="text" placeholder="departure"
+      ng-model="flight.departure" bs-typeahead="typeahead" required>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="des">Destination</label>
+    <div class="controls">
+      <input id="des" type="text" placeholder="destination"
+      ng-model="flight.destination" bs-typeahead="typeahead" required>
+    </div>
+  </div>
+  <div class="control-group">
+    <label ng-model="date" class="control-label"
+     for="date">Date</label>
+    <div class="controls">
+      <input ng-model="flight.date" type="text" id="date" placeholder="date"
+      data-date-format="yyyy-mm-dd" bs-datepicker required>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="price">Price</label>
+    <div class="controls">
+      <input ng-model="flight.price" type="number" id="price"
+      placeholder="price" required>
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="total">Total</label>
+    <div class="controls">
+      <input ng-model="flight.total" type="number" id="total"
+      placeholder="total seats" required>
+    </div>
+  </div>
+  <div class="form-actions control-group">
+      <button type="submit" class="btn btn-primary">Add</button>
+      <a href="#/" class="btn btn-danger">Cancel</a>
+  </div>
+</form>
+</script>
+
+</div> <!-- end of container - nothing further -->
