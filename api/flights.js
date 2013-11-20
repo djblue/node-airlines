@@ -1,6 +1,5 @@
 // Flights search api.
 var mongoose  = require('mongoose')
- ,  auth      = require('./auth')
  ,  Schema    = mongoose.Schema
  ,  Location  = require('./locations').Location;
 
@@ -158,6 +157,8 @@ var add = function (req, res) {
 
 // Require express app and setup the appropriate routes.
 exports.setup = function (app) {
+
+    auth = require('./auth');
     
     app.get('/api/flights', search);
     app.post('/api/flights', auth.isAdmin, add);
