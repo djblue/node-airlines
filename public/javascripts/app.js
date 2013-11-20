@@ -33,13 +33,17 @@ app.service('userService', function ($http, $rootScope) {
 
     self.status = { logged: false };
 
-    // Try to get user data on service startup
-    $http.get('/api/user').success(function (data) {
-        if (!!data.username) {
-            self.status['user'] = data;
-            self.status.logged = true;
-        }
-    });
+    this.load = function () {
+        // Try to get user data on service startup
+        $http.get('/api/user').success(function (data) {
+            if (!!data.username) {
+                self.status['user'] = data;
+                self.status.logged = true;
+            }
+        });
+    };
+    
+    this.load();
 
     this.login = function (user, pass, call) {
         $http.post('/api/login', {
@@ -165,6 +169,7 @@ function citySearch($scope, $http, locationService, userService) {
     $scope.buy = function (id) {
         if (userService.status.logged == true) {
             $http.get('/api/user/flights/'+id).success(function () {
+                userService.load();
                 $scope.alerts = [{
                     type: 'success',
                     title: 'Success',
