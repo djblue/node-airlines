@@ -1,132 +1,174 @@
 
 <style type="text/css">
   .bs-example{
-  	margin: 20px;
-  }
-  body {
-      margin: 0;
-      background: url('http://i.imgur.com/Vrrib5b.png');
-      background-repeat: no-repeat;
+  	   margin: 20px;
     }
-  img {
-      width: auto;
-      height: auto;
-    }
-
   .breadcrumb {
-      padding-left: 25px;
-      background-color: #8cc84b;
-      font-size: 16px;
-      margin: 10px 25px 25px;
+        padding-left: 25px;
+        background-color: #8cc84b;
+        font-size: 16px;
+        margin: 10px 25px 25px;
+    }
+    .accordion-inner {
+        padding: 15px 15px 9px;
+        border-top: 4px solid rgb(209, 229, 209);
+        background-color: #f0f0f0;
+    }
+    .accordion-toggle {
+        display: block;
+        padding: 8px 15px;
+        background-color: white;
+    }
+    .accordion-group {
+        margin-right: 10px;
+        background-color: white;
+    }
+    .accordion-heading {
+        margin-top: 2px;
+        margin-right: 25px;
+    }
+    .header2 {
+        margin-top: -20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-bottom: 20px;
+        position: relative;
+        background: #8cc84b;
+        color: #46483e;
+        height: auto;
+    }
+    .header2 h1, p {
+        padding-left: 40px;
+    }
+    .header2 h1 {
+        padding-top: 40px;
+        padding-bottom: 20px;
+        font-size: 64px;
+        line-height: 64px;
+    }
+    @media (min-width: 980px) {
+       .header2 {
+            max-height: 248px;
+            margin: 0;
+            margin-top: 20px;
+        }
+    }
+    .shadow2 {
+        -moz-box-shadow:    inset 0 0 10px #000000;
+        -webkit-box-shadow: inset 0 0 10px #000000;
+        box-shadow:         inset 0 0 10px #000000;
     }
 </style>
+    <div class="header2">
+      <div class="shadow2">
+        <h1>Help & FAQ's</h1>
+      </div>
+    </div>
     <div class="container-fluid">
        <div class="row-fluid">
-          <div class="span12">
-            <br><br><br>
-            <h1>Help & FAQ's</h1><br><br>
-            <ol class="breadcrumb">
-              <h1>Frequently Asked Questions</h1><br>
-              <i class="icon-question-sign"></i> question goes here
-              <p>answer goes here</p>
-              <h6></h6>
+            <br><ol class="breadcrumb">
+              <h1>Frequently Asked Questions</h1>
               <div class="bs-example">
-    <div id="myAccordion" class="accordion">
-        <!----> 
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a href="#collapse1" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">How do I buy a flight?</a>
-            </div>
-            <div class="accordion-body collapse" id="collapse1">
-                <div class="accordion-inner">
-                    <p>* First:  log-in.</p>
-                    <p>* Second: search your flight.</p>
-                    <p>* Third:  click the buy button.</p>
+                <div id="myAccordion" class="accordion">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse1" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-question-sign"></i>&nbsp;&nbsp;&nbsp;How do I create an account?</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse1">
+                            <div class="accordion-inner">
+                                <p>Press the "Sign Up" button in the upper right corner of the page.  Fill out your personal information and click "Create My Account".</p>
+                                <p><i>Welcome to the Node Airlines family!</i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!----> 
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse2" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-question-sign"></i>&nbsp;&nbsp;&nbsp;How do I purchase a ticket?</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse2">
+                            <div class="accordion-inner">
+                                <p>A Node Airlines account is required to purchase tickets.  Once you have logged into your account, enter your current location and desired destination into our search feature.  Date and price are optional search terms.  Relevant flights will be displayed along with the option to purchase tickets.</p>
+                            </div>
+                        </div>
+                    </div>   
+                    <!----> 
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse3" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-question-sign"></i>&nbsp;&nbsp;&nbsp;How do I cancel a flight?</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse3">
+                            <div class="accordion-inner">
+                                <p>A list of your current flights is available on your account userpage.  Simply press the "cancel" button to forfeit your seat on a flight.  A refund will be credited to the credit card on record**.</p>
+                                <p>** <i>Flights cancelled within 24 hours of the departure time are not eligible for a refund.</i></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse4" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-question-sign"></i>&nbsp;&nbsp;&nbsp;How many bags can I carry on my flight?</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse4">
+                            <div class="accordion-inner">
+                                <p>You are allowed to carry a maximum of 2 bags per ticket.  Each bag is subject to size and weight limitations.</p>
+                                <p>Additional charges apply for overweight and excessively large items.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!----> 
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse5" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-question-sign"></i>&nbsp;&nbsp;&nbsp;What happens if I lose my ticket(s)?</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse5">
+                            <div class="accordion-inner">
+                                <p>In the event that tickets are lost, guests will only be allowed to board the flight if the owner of the account on which the ticket(s) were purchased is present at the time of departure.  Sufficient identification and proof of ticket purchase(s) must be provided.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!----> 
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse6" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-question-sign"></i>&nbsp;&nbsp;&nbsp;What happens if I miss my flight?</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse6">
+                            <div class="accordion-inner">
+                                <p>Node Airlines encourages the punctuality of its customers.  All ticket sales are final once the refund deadline has been reached, 24 hours before the corresponding flight's departure time.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!----> 
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse7" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-question-sign"></i>&nbsp;&nbsp;&nbsp;I left something on the plane. Can I get it back?</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse7">
+                            <div class="accordion-inner">
+                                <p>Node Airlines is not responsible for lost items.  If an item is found that contains sufficient identification, the owner will be notified and the item will be held for a maximum of 30 days.</p>
+                                <p>Items may be shipped via standard post at the owner's expense.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!----> 
                 </div>
             </div>
-        </div>   
-        <!----> 
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a href="#collapse2" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">How do I cancel a flight?</a>
-            </div>
-            <div class="accordion-body collapse" id="collapse2">
-                <div class="accordion-inner">
-                    <p>* First:  log-in.</p>
-                    <p>* Second: check your flights.</p>
-                    <p>* Third:  click the cancel button next to the undesired flight.</p>
-                </div>
-            </div>
-        </div>
-        <!----> 
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a href="#collapse3" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">How do I create an account?</a>
-            </div>
-            <div class="accordion-body collapse" id="collapse3">
-                <div class="accordion-inner">
-                    <p>* First: click Sign-up (top right corner).</p>
-                    <p>* Second: complete the form.</p>
-                    <p>* Third:  click Create my account</p>
-                </div>
-            </div>
-        </div>
-        <!----> 
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a href="#collapse4" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">How many bags can I carry on?</a>
-            </div>
-            <div class="accordion-body collapse" id="collapse4">
-                <div class="accordion-inner">
-                    <p>You are allow to carry a maximum of 2 bags per ticket, each bag have some size and weight limitations. Additional charge would apply for overweight and excess items.</p>
-                </div>
-            </div>
-        </div>
-        <!----> 
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a href="#collapse5" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">What happen if I lost my ticket/s?</a>
-            </div>
-            <div class="accordion-body collapse" id="collapse5">
-                <div class="accordion-inner">
-                    <p>The person who paid for the ticket/s would have to be present at the time of departure, ID would be required. This only if your ticket is shown on your account.</p>
-                </div>
-            </div>
-        </div>
-        <!----> 
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a href="#collapse6" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">What happen if I need to cancel my flight?</a>
-            </div>
-            <div class="accordion-body collapse" id="collapse6">
-                <div class="accordion-inner">
-                    <p>You would get 85% of the ticket price if it is cancel before 72 hrs.</p>
-                    <p>50% if it is canceled before 48 hrs.</p> 
-                    <p>No refund if it is canceled on the departure day.</p>
-                </div>
-            </div>
-        </div>
-        <!----> 
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                <a href="#collapse7" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle">I left something on the plane. Can I get it back?</a>
-            </div>
-            <div class="accordion-body collapse" id="collapse7">
-                <div class="accordion-inner">
-                    <p>We are not responsible for lost items. If we found it and it contains the appropriate ID, we would contact you. otherwise all we have to say that we sorry for your lost.</p>
-                </div>
-            </div>
-        </div>
-        <!----> 
-    </div>
-</div>
             </ol>
-            <ol class="breadcrumb">
-              <h1>Other Resources</h1><br>
-              text goes here
-              <h6></h6>
+             <ol class="breadcrumb">
+              <h1>Other Resources</h1>
+              <div class="bs-example">
+                <div id="myAccordion" class="accordion">
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <p>&nbsp;<br>
+                    If you have additional questions, please call our toll free customer service number: <b>1-555-NODE-AIR</b><br><br>
+                    Comments and inquiries can also be directed to our staff via our <a href="/#/contact"><b>contact form</b></a>.
+                    <br>&nbsp;</p>
+                  </div>
+                </div>
+              </div>
+              </div>
             </ol>
-          </div>
           </div>
        </div>
     </div>

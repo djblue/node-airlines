@@ -1,38 +1,163 @@
 
-    <style type="text/css">
-    	body {
-     			background: url('http://i.imgur.com/Vrrib5b.png');
-     			background-repeat: no-repeat;
-     		}
-     	img {
-     			width: auto;
-     			height: auto;
-     		}
-
-     	.breadcrumb {
-     			padding-left: 25px;
-     			background-color: #8cc84b;
-     			font-size: 16px;
-     			margin: 10px 25px 25px;
-     		}
-    </style>
-  	<div class="container-fluid">
-       <div class="row-fluid">
-          <div class="span12">
-          	<br><br><br>
-            <h1>About Node Airlines</h1><br><br>
-            <ol class="breadcrumb">
-            	<h1>History</h1><br>
-            		text goes here
-            	<h6></h6>
+<style type="text/css">
+  .bs-example{
+  		margin: 20px;
+    }
+  .breadcrumb {
+    	padding-left: 25px;
+    	background-color: #8cc84b;
+    	font-size: 16px;
+    	margin: 10px 25px 25px;
+    }
+    .accordion-inner {
+    	padding: 15px 15px 9px;
+    	border-top: 4px solid rgb(209, 229, 209);
+    	background-color: #f0f0f0;
+    }
+    .accordion-toggle {
+    	display: block;
+    	padding: 8px 15px;
+    	background-color: white;
+    }
+    .accordion-group {
+    	margin-right: 10px;
+    	background-color: white;
+    }
+    .accordion-heading {
+    	margin-top: 2px;
+    	margin-right: 25px;
+    }
+    .header2 {
+        margin-top: -20px;
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-bottom: 20px;
+        position: relative;
+        background: #8cc84b;
+        color: #46483e;
+        height: auto;
+    }
+    .header2 h1, p {
+        padding-left: 40px;
+    }
+    .header2 h1 {
+        padding-top: 40px;
+        padding-bottom: 20px;
+        font-size: 64px;
+        line-height: 64px;
+    }
+    @media (min-width: 980px) {
+       .header2 {
+            max-height: 248px;
+            margin: 0;
+            margin-top: 20px;
+        }
+    }
+    .shadow2 {
+        -moz-box-shadow:    inset 0 0 10px #000000;
+        -webkit-box-shadow: inset 0 0 10px #000000;
+        box-shadow:         inset 0 0 10px #000000;
+    }
+</style>
+    <div class="header2">
+      <div class="shadow2">
+        <h1>About Us</h1>
+      </div>
+    </div>
+    <div class="container-fluid">
+       <div class="row-fluid"><br>
+			<ol class="breadcrumb">
+              <h1>History</h1>
+              <div class="bs-example">
+              	<div id="myAccordion" class="accordion">
+	              <div class="accordion-group">
+	              	<div class="accordion-heading">
+	              		<p>&nbsp;<br>
+	              		text goes here
+	              		<br>&nbsp;</p>
+	              	</div>
+            	  </div>
+          		</div>
+          	  </div>
             </ol>
             <ol class="breadcrumb">
-            	<h1>Our Business Model</h1><br>
-            		text goes here
-            	<h6></h6>
+              <h1>Our Business Model</h1>
+              <div class="bs-example">
+              	<div id="myAccordion" class="accordion">
+	              <div class="accordion-group">
+	              	<div class="accordion-heading">
+	              		<p>&nbsp;<br>
+	              		Node Airlines is dedicated to providing exemplary service for its valued customers.  We aim to ensure that your comprehensive experience with our company &mdash;from buying your tickets, to flying comfortably to your destination, to baggage claim&mdash; is overwhelmingly positive.  Each of our employees will be trained to industry standards and geared toward promoting the customers' best interests.<br><br>
+	              		Node Airlines thanks you for your business, and we hope you choose to fly with us again soon!
+	              		<br>&nbsp;</p>
+	              	</div>
+            	  </div>
+          		</div>
+          	  </div>
             </ol>
-          </div>
+            <ol class="breadcrumb">
+              <h1>Careers</h1>
+              <div class="bs-example">
+                <div id="myAccordion" class="accordion">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse1" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-search"></i>&nbsp;&nbsp;&nbsp;Flight Crew</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse1">
+                            <div class="accordion-inner">
+                                <p>text goes here</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!----> 
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse2" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-search"></i>&nbsp;&nbsp;&nbsp;Information Technology</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse2">
+                            <div class="accordion-inner">
+                                <p>text goes here</p>
+                            </div>
+                        </div>
+                    </div>   
+                    <!----> 
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse3" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-search"></i>&nbsp;&nbsp;&nbsp;Customer Service</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse3">
+                            <div class="accordion-inner">
+                                <p>text goes here</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse4" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-search"></i>&nbsp;&nbsp;&nbsp;Engineering & Maintenance</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse4">
+                            <div class="accordion-inner">
+                                <p>text goes here</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!----> 
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a href="#collapse5" data-parent="#myAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-search"></i>&nbsp;&nbsp;&nbsp;Airport Operations</a>
+                        </div>
+                        <div class="accordion-body collapse" id="collapse5">
+                            <div class="accordion-inner">
+                                <p>text goes here</p>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            </ol>
           </div>
        </div>
     </div>
     <hr>
+  
