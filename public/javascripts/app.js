@@ -221,13 +221,20 @@ function manageCtrl ($scope, $http, locationService, $location) {
                 content: 'There is in error with the locations.'
             }];
         } else {
+            var d1 = new Date(
+                $scope.flight.dep.date.toLocaleDateString()
+                + ' ' + $scope.flight.dep.time);
+            var d2 = new Date(
+                $scope.flight.des.date.toLocaleDateString()
+                + ' ' + $scope.flight.des.time);
+                console.log(d1.toString());
             $http.post('/api/flights', {
                 departure: {
-                    date: new Date($scope.flight.date),
+                    date: d1,
                     location: dep[0]._id
                 },
                 destination: {
-                    date: new Date($scope.flight.date),
+                    date: d2,
                     location: des[0]._id
                 },
                 price: $scope.flight.price,
