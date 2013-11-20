@@ -23,6 +23,9 @@ var app = angular.module('app', ['$strap.directives'])
             when('/user', {
                 templateUrl: 'partials/user.html'
             }).
+            when('/admin/add', {
+                templateUrl: 'partials/add.html'
+            }).
             otherwise({ redirectTo: '/' });
     }]);
 

@@ -80,8 +80,15 @@
 
         <div ng-show="status.logged">
         <ul class="nav pull-right">
-          <li ng-show="status.user.admin" data-match-route="/(:?manage)">
-            <a href="#/manage">Manage</a></li>
+          <li class="dropdown" ng-show="status.user.admin">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Manage <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" >
+              <li><a href="#/admin/add">Create</a></li>
+              <li><a href="#/admin/add">Read</a></li>
+            </ul>
+          </li>
           <li data-match-route="/(:?user)">
             <a href="#/user">{{ status.user.username }}</a></li>
           <li><a href="/api/logout">Sign Out</a></li>

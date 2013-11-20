@@ -1,0 +1,101 @@
+<div ng-controller="manageCtrl" class="container">
+
+<div class="alert fade" ng-repeat="alert in alerts"
+bs-alert="alert"></div>
+
+<!-- Create Form -->
+<h2>Add A Flight</h1>
+
+<form  ng-submit="add()">
+
+  <div class="row-fluid">
+
+  <div class="span4">
+
+  <h2>Departure</h2>
+
+  <div class="control-group">
+    <div class="controls">
+      <input id="dep" type="text" placeholder="location"
+      ng-model="flight.departure" bs-typeahead="typeahead" required>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <input ng-model="flight.dep.date" type="text" id="date"
+      placeholder="date" data-date-format="yyyy-mm-dd" bs-datepicker
+      required>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+    <input type="text" placeholder="time" ng-model="flight.dep.time"
+    data-toggle="timepicker" bs-timepicker required>
+    </div>
+  </div>
+
+  </div>
+
+
+  <div class="span4">
+
+  <h2>Destination</h2>
+
+  <div class="control-group">
+    <div class="controls">
+      <input id="des" type="text" placeholder="location"
+      ng-model="flight.destination" bs-typeahead="typeahead" required>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <input ng-model="flight.des.date" type="text" id="date"
+      placeholder="date" data-date-format="yyyy-mm-dd" bs-datepicker
+      required>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+    <input type="text" placeholder="time" ng-model="flight.des.time"
+    data-toggle="timepicker" bs-timepicker required>
+    </div>
+  </div>
+
+  </div>
+
+
+  <div class="span4">
+
+  <h2>Price</h2>
+
+  <div class="control-group">
+    <div class="controls">
+      <input ng-model="flight.price" type="number" id="price"
+      placeholder="price" required>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <input ng-model="flight.total" type="number" id="total"
+      placeholder="total seats" required>
+    </div>
+  </div>
+
+  </div>
+
+  </div> <!-- end of row-fluid -->
+
+
+  <div class="form-actions control-group">
+      <button type="submit" class="btn btn-primary">Add</button>
+      <a href="#/" class="btn btn-danger">Cancel</a>
+  </div>
+
+</form>
+
+</div> <!-- end of container - nothing further -->
