@@ -131,9 +131,23 @@ function citySearch($scope, $http, locationService, userService) {
         if (dep.length === 0 || dep.length === 0 || from === to) {
             return;
         } else {
-            $http.get('/api/flights', { params: { 
-                dep: dep[0]._id, des: des[0]._id
-            }}).success(function (data) {
+
+            var req  = { dep: dep[0]._id, des: des[0]._id };
+
+            if (!!$scope.datepicker && !!$scope.datepicker.date) {
+                var date = $scope.datepicker.date;
+                req['date'] = date.getFullYear()  + '-' +
+                              (date.getMonth() + 1) + '-' +
+                              (date.getDate()+1);
+            }
+
+            if (!!$scope.price) {
+                console.log('hello');
+                req['cost'] = $scope.price;
+            }
+
+            $http.get('/api/flights', { params: req
+            }).success(function (data) {
                 if (data.length != 0) {
                     $scope.find = data; 
                     $scope.display = '';
