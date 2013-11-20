@@ -155,6 +155,7 @@ function citySearch($scope, $http, locationService, userService) {
                 if (data.length != 0) {
                     $scope.find = data; 
                     $scope.display = '';
+                    $('.header').slideUp();
                 } else {
                     $scope.alerts = [{
                         type: 'error',
