@@ -1,5 +1,6 @@
 var passport        = exports.passport = require('passport')
   , LocalStrategy   = require('passport-local').Strategy
+  , Location        = require('./locations').Location
   , User            = require('./users').User;
 
 passport.use(new LocalStrategy(
@@ -25,9 +26,11 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
     User.findById(id)
-        .populate('flights').
-        exec(function(err, user) {
-            done(err, user);
+        .populate('flights')
+        .exec(function (err, user) {
+            Location.populate(user.flights, 
+                'departure.location destination.location', 
+                function (err) { done(err, user); });
     });
 });
 
