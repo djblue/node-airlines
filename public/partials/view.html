@@ -1,0 +1,34 @@
+<div class="container">
+<div ng-controller="viewCtrl">
+  <!-- search result table -->
+  <table class="table table-hover table-striped"> 
+    <tr>
+      <th>Departure Date</th>
+      <th>Arrival Date</th>
+      <th>Availability</th>
+      <th>Price</th>
+    </tr>
+    <tr ng-repeat="flight in find">
+      <td>{{ flight.departure.date | date:'dd/MM/yyyy' }}</td>
+      <td>{{ flight.destination.date | date:'dd/MM/yyyy' }}</td>
+      <td>{{ flight.available }}</td>
+      <td>{{ flight.price | currency }}</td>
+    </tr>
+  </table>
+
+<div class="text-center pagination">
+  <ul>
+    <li><a href="#/admin/view/{{prev}}">&laquo;</a></li>
+    <li><a href="#/admin/view/1">1</a></li>
+    <li><a href="#/admin/view/2">2</a></li>
+    <li><a href="#/admin/view/3">3</a></li>
+    <li><a href="#/admin/view/4">4</a></li>
+    <li><a href="#/admin/view/5">5</a></li>
+    <li><a href="#/admin/view/6">6</a></li>
+    <li><a href="#/admin/view/7">7</a></li>
+    <li><a href="#/admin/view/{{next}}">&raquo;</a></li>
+  </ul>
+</div>
+
+</div>
+</div>

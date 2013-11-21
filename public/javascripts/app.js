@@ -26,6 +26,9 @@ var app = angular.module('app', ['$strap.directives'])
             when('/admin/add', {
                 templateUrl: 'partials/add.html'
             }).
+            when('/admin/view/:page', {
+                templateUrl: 'partials/view.html'
+            }).
             otherwise({ redirectTo: '/' });
     }]);
 
@@ -145,7 +148,7 @@ function citySearch($scope, $http, locationService, userService) {
                 var date = $scope.datepicker.date;
                 req['date'] = date.getFullYear()  + '-' +
                               (date.getMonth() + 1) + '-' +
-                              (date.getDate()+1);
+                              (date.getDate());
             }
 
             if (!!$scope.price) {
@@ -256,72 +259,17 @@ function manageCtrl ($scope, $http, locationService, $location) {
     };
 };
 
-function Cntrl($scope){
-	//get locations scope
-	$scope.locations = Locations;
-	$scope.flights = Flights;
+function viewCtrl ($scope, $http, $route) {
 
-	//departure
-	$scope.dep = $scope.$;
-	
-	//destination
-	$scope.des = $scope.$; 
+    var page = Number($route.current.params.page);
 
-	$scope.$watch('dep', function() {
-       //console.log($scope.flights);
- 	});
-}
+    $scope.next = page + 1;
+    $scope.prev = page - 1;
 
-app.filter("uniqueDates", function(){
-    return function(input){
-	   	var sDates = [];
-		var found = false;
-
-		for(var i in input){
-			found = false;
-			for(var j in sDates){
-				if(input[i].departure.date == sDates[j].departure.date)
-					found = true;
-		}
-		if(found == false)
-			sDates.push(input[i]);
-		}
-
- 	   	return sDates;
-    }
-})
-
-app.filter("uniqueDes", function(){
-    return function(input){
-	   	var uDes = [];
-		var found = false;
-
-		for(var i in input){
-			found = false;
-			for(var j in uDes){
-				if(input[i].destination._location.city == uDes[j].destination._location.city)
-					found = true;
-		}
-		if(found == false)
-			uDes.push(input[i]);
-		}
-
- 	   	return uDes;
-    }
-})
-/*
-for array data sources:
-    label for value in array
-    select as label for value in array
-    label group by group for value in array
-    select as label group by group for value in array track by trackexpr
-for object data sources:
-    label for (key , value) in object
-    select as label for (key , value) in object
-    label group by group for (key, value) in object
-    select as label group by group for (key, value) in object
-*/
-
-
-
-
+    $http.get('/api/flights', {params: {
+        limit: 10,
+        page: page
+    }}).success(function (data) {
+        $scope.find = data;
+    });
+};
