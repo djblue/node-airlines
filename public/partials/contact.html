@@ -1,15 +1,37 @@
 <div class="container">
+
+<h1>Contact Us</h1>
+<hr/>
+
+  <div class="row-fluid">
+
+  <div class="span4">
+    <p>
+      Your feedback is very important to us. Feel free to: 
+    </p>
+    <ul>
+      <li>Give us feedback on our service and how we can improve it.</li>
+      <li>Give us suggestions about what feature you want or what you
+      think should be change.</li>
+    </ul>
+    <p>
+      All requests go directly to <a href="#">/dev/null</a> and are processed
+      immediately. We are always trying to improve our service.
+    </p>
+    <p><b>Thank you for your feedback.</b></p>
+  </div>
+
   <form class="well span8">
-    <div class="row">
-      <div class="span3">
-        <label>First Name</label>
-        <input type="text" class="span3" placeholder="Your First Name">
-        <label>Last Name</label>
-        <input type="text" class="span3" placeholder="Your Last Name">
-        <label>Email Address</label>
-        <input type="text" class="span3" placeholder="Your email address">
-        <label>Subject
-          <select id="subject" name="subject" class="span3">
+    <div class="row-fluid">
+      <div class="span4">
+        <label><b>First Name</b></label>
+        <input type="text" class="span12" placeholder="Your First Name">
+        <label><b>Last Name</b></label>
+        <input type="text" class="span12" placeholder="Your Last Name">
+        <label><b>Email Address</b></label>
+        <input type="text" class="span12" placeholder="Your email address" required>
+        <label><b>Subject</b>
+          <select id="subject" name="subject" class="span12">
             <option value="na" selected="">Choose One:</option>
             <option value="service">General Customer Service</option>
             <option value="suggestions">Suggestions</option>
@@ -17,11 +39,13 @@
           </select>
         </label>
         </div>
-        <div class="span5">
-          <label>Message</label>
+        <div class="span8">
+          <label><b>Message</b></label>
           <textarea name="message" id="message" 
-            class="input-xlarge span5" rows="10"></textarea>
+            class="input-xlarge span12" rows="10"></textarea>
         </div>
     <button type="submit" class="btn btn-primary pull-right">Send</button>
   </form>
+  
+  </div>
 </div>

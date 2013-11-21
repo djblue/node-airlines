@@ -1,13 +1,20 @@
 <div class="container">
+<div class="container"><br>
   <div class="row-fluid">
   <div class="span8">
-    <div >
-      <h1>Membership</h1> 
-    </div>
+    <h1>Membership</h1> 
+    <h3>Why should I create an account?</h3>
+      <p>Becoming a Node Airlines member offers you access to
+      hundreds of daily flights.  Whether you're traveling on
+      business, visiting relatives in another city, or you simply want
+      to enjoy the sights and sounds of a new place, we've got you
+      covered!</p>
+      <p>Membership is completely FREE.  Credit card information is only
+      collected upon checkout during ticket purchases.<p>
   </div>
   <div class="well span4">    
     <form id="signup" method="post" action="/api/user">
-      <legend>Sign Up</legend>        
+      <h3>Sign Up</h3><br>        
       <input type="text" class="input-block-level" name="username"
       placeholder="Username" required>
       <input type="text" class="input-block-level" name="firstname"
@@ -20,9 +27,9 @@
       placeholder="Password" required>
       <input type="Password" class="input-block-level" name="conpasswd"
       placeholder="Re-enter Password" required>
-      <button type="submit" class="btn btn-success">
-        <em>Create My Account</em></button>
-    </form>
+      <input class="btn btn-primary pull-right"type="submit" 
+      id="submit" value="Create My Account" />
+    </form><br>
   </div>
   </div>
 </div>
